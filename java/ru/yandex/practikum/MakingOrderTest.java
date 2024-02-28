@@ -34,12 +34,18 @@ public class MakingOrderTest {
     }
 
     @Test
-    public void createOrder(){
+    public void createOrderOneTestSet(){
         driver.get("https://qa-scooter.praktikum-services.ru/");
-        MakingOrder order = new MakingOrder(driver, "Верхняя", "Бульвар Рокоссовского", "29-е февраля 2024 г.", "black", "сутки");
-        boolean actualResult = order.createOrderAfterClick("Никита", "Кардин", "Артельная 10А", "Бульвар Рокоссовского", "89101470050","29-е февраля 2024 г.", "сутки", "black", "Нижняя");
+        MakingOrder order = new MakingOrder(driver);
+        boolean actualResult = order.createOrderAfterClick("Никита", "Курдин", "Артельная 10А", "Бульвар Рокоссовского", "89101470050","1-е марта 2024 г.", "сутки", "black", "Нижняя");
         assertEquals(true, actualResult);
-        driver.quit();
+    }
+    @Test
+    public void createOrderTwoTestSet(){
+        driver.get("https://qa-scooter.praktikum-services.ru/");
+        MakingOrder order = new MakingOrder(driver);
+        boolean actualResult = order.createOrderAfterClick("Екатерина", "Первая", "Артельная 100А", "Черкизовская", "89101470050","2-е марта 2024 г.", "сутки", "black", "верхняя");
+        assertEquals(true, actualResult);
     }
 
     @After

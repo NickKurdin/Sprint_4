@@ -37,7 +37,7 @@ public class MakingOrder {
     //Поле "Когда привезти заказ"
     By whenBringOrder = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
 
-    public boolean createOrderAfterClick(String firstName, String lastName, String address, String subwayStation, String phoneNumber, String deliveryDate, String termTwoDays, String colourScooter, String button) {
+    public boolean createOrderAfterClick(String firstName, String lastName, String address, String subwayStation, String phoneNumber, String deliveryDate, String termRent, String colourScooter, String button) {
         if (button.equals("Нижняя")) {
             WebElement element = driver.findElement(By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']"));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
@@ -59,7 +59,7 @@ public class MakingOrder {
             driver.findElement(whenBringOrder).click();
             driver.findElement(By.xpath(".//div[contains(@aria-label,'" + deliveryDate + "')]")).click();
             driver.findElement(By.xpath(".//div[text()='* Срок аренды']")).click();
-            driver.findElement(By.xpath(".//div[@class='Dropdown-option' and text()='" + termTwoDays + "']")).click();
+            driver.findElement(By.xpath(".//div[@class='Dropdown-option' and text()='" + termRent + "']")).click();
             driver.findElement(By.xpath(".//input[@id='" + colourScooter + "']")).click();
             driver.findElement(buttonForOrder).click();
             driver.findElement(buttonConfirmForOrder).click();
