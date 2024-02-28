@@ -14,10 +14,6 @@ public class MakingOrder {
         driver = browser;
     }
 
-    //Кнопка "Заказать"
-    private By topButtonMakeOrder = By.xpath(".//button[text()='Заказать' and position()='1']");
-    //Кнопка "Заказать" чуть ниже
-    private By bottomButtonMakeOrder = By.xpath(".//button[text()='Заказать' and position()='2']");
     //Поле ввода "Имя"
     By firstNameUserForOrder = By.xpath(".//input[@placeholder='* Имя']");
     //Поле ввода "Фамилия"
@@ -36,6 +32,10 @@ public class MakingOrder {
     By buttonConfirmForOrder = By.xpath(".//button[text()='Да']");
     //Заголовок "Заказ оформлен"
     By headerCreatedOrder = By.xpath(".//div[text()='Заказ оформлен']");
+    //Кнопка "Принять куки"
+    By buttonAcceptCookie = By.cssSelector(".App_CookieButton__3cvqF");
+    //Поле "Когда привезти заказ"
+    By whenBringOrder = By.xpath(".//input[@placeholder='* Когда привезти самокат']");
 
     public boolean createOrderAfterClick(String firstName, String lastName, String address, String subwayStation, String phoneNumber, String deliveryDate, String termTwoDays, String colourScooter, String button) {
         if (button.equals("Нижняя")) {
@@ -46,18 +46,18 @@ public class MakingOrder {
         if (!button.equals("Нижняя")){
             driver.findElement(By.xpath(".//button[@class='Button_Button__ra12g']")).click();
         }
-            driver.findElement(By.cssSelector(".App_CookieButton__3cvqF")).click();
+            driver.findElement(buttonAcceptCookie).click();
             driver.findElement(firstNameUserForOrder).sendKeys(firstName);
             driver.findElement(lastNameUserForOrder).sendKeys(lastName);
             driver.findElement(addressUserForOrder).sendKeys(address);
             driver.findElement(subwayStationUserForOrder).click();
             new WebDriverWait(driver, 3).
-                    until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//button[@value='1']")));
-            driver.findElement(By.xpath(".//button[@value='1']")).click();
+                    until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//div[text()='" + subwayStation + "']")));
+            driver.findElement(By.xpath(".//div[text()='" + subwayStation + "']")).click();
             driver.findElement(phoneNumberUserForOrder).sendKeys(phoneNumber);
             driver.findElement(buttonNext).click();
-            driver.findElement(By.xpath(".//input[@placeholder='* Когда привезти самокат']")).click();
-            driver.findElement(By.xpath(".//div[contains(@aria-label,'29-е февраля 2024 г.')]")).click();
+            driver.findElement(whenBringOrder).click();
+            driver.findElement(By.xpath(".//div[contains(@aria-label,'" + deliveryDate + "')]")).click();
             driver.findElement(By.xpath(".//div[text()='* Срок аренды']")).click();
             driver.findElement(By.xpath(".//div[@class='Dropdown-option' and text()='" + termTwoDays + "']")).click();
             driver.findElement(By.xpath(".//input[@id='" + colourScooter + "']")).click();
