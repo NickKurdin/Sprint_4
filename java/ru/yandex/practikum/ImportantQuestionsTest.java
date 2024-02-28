@@ -1,5 +1,6 @@
 package ru.yandex.practikum;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.After;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ImportantQuestionsTest {
+    private WebDriver driver;
     private final String question;
     private final String expectedResult;
     public ImportantQuestionsTest(String question, String expectedResult){
@@ -34,7 +36,6 @@ public class ImportantQuestionsTest {
         return webdriver;
     }
 
-    private WebDriver driver;
 
     @Parameterized.Parameters
     public static Object[] getTestData(){
@@ -50,6 +51,11 @@ public class ImportantQuestionsTest {
         };
     }
 
+    @Before
+    public void initialization(){
+        driver = createDriver("chrome");
+    }
+
     @Test
     public void correctAnswerOnTheImportantQuestion(){
         driver = createDriver("chrome");
@@ -60,7 +66,7 @@ public class ImportantQuestionsTest {
     }
 
     @After
-    public void teardown(){
+    public void tearDown(){
         driver.quit();
     }
 
