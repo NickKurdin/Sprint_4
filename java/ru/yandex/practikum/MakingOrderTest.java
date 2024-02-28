@@ -12,7 +12,8 @@ import static org.junit.Assert.assertEquals;
 
 public class MakingOrderTest {
     private WebDriver driver;
-    public static WebDriver createDriver(String browser) {
+
+    public WebDriver createDriver(String browser) {
         WebDriver webdriver = null;
 
         if (browser.equalsIgnoreCase("chrome")) {
@@ -27,13 +28,22 @@ public class MakingOrderTest {
         return webdriver;
     }
 
+    @Before
+    public void initialization() {
+        driver = createDriver("chrome");
+    }
+
     @Test
     public void createOrder(){
-        WebDriver driver = createDriver("firefox");
         driver.get("https://qa-scooter.praktikum-services.ru/");
         MakingOrder order = new MakingOrder(driver);
         boolean actualResult = order.createOrderAfterClick("Никита", "Кардин", "Артельная 10А", "Бульвар Рокоссовского", "89101470050","29-е февраля 2024 г.", "сутки", "black", "Нижняя");
         assertEquals(true, actualResult);
+        driver.quit();
+    }
+
+    @After
+    public void tearDown(){
         driver.quit();
     }
 
