@@ -8,14 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MakingOrder {
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String subwayStation;
-    private String phoneNumber;
-    private String deliveryDate;
-    private String termTwoDays;
-    private String colourScooter;
+    private final WebDriver driver;
+
     public MakingOrder(WebDriver browser){
         driver = browser;
     }
@@ -32,26 +26,16 @@ public class MakingOrder {
     By addressUserForOrder = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
     //Поле ввода "Станция метро"
     By subwayStationUserForOrder = By.xpath(".//div[@class='select-search']/div[@class='select-search__value']/input[@placeholder='* Станция метро']");
-    By selectedSubwayStationUserForOrder = By.xpath(".//button/div[text()='" + subwayStation + "']");
     //Поле ввода "Телефон"
     By phoneNumberUserForOrder = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
     //Кнопка "Далее"
     By buttonNext = By.xpath(".//button[text()='Далее']");
-    //Поле "Когда привести заказ"
-    By deliveryDateForOrder = By.xpath(".//div[@aria-label='Choose " + deliveryDate + "']");
-    //Поле "Срок аренды"
-    By termTwoDaysForOrder = By.xpath(".//div[@class='Dropdown-option' and text()='" + termTwoDays + "']");
-    //Поле "Цвет самоката"
-    By colourScooterForOrder = By.xpath(".//input[@id='" + colourScooter + "']");
     //Кнопка "Заказать"
     By buttonForOrder = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
     //Кнопка "Да"
     By buttonConfirmForOrder = By.xpath(".//button[text()='Да']");
     //Заголовок "Заказ оформлен"
     By headerCreatedOrder = By.xpath(".//div[text()='Заказ оформлен']");
-
-    private final WebDriver driver;
-
 
     public boolean createOrderAfterClick(String firstName, String lastName, String address, String subwayStation, String phoneNumber, String deliveryDate, String termTwoDays, String colourScooter, String button) {
         if (button.equals("Нижняя")) {
