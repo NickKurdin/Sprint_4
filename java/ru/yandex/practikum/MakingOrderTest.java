@@ -32,7 +32,7 @@ public class MakingOrderTest {
         WebDriver driver = createDriver("firefox");
         driver.get("https://qa-scooter.praktikum-services.ru/");
         MakingOrder order = new MakingOrder(driver);
-        boolean actualResult = order.createOrderAfterClick("Никита", "Кардин", "Артельная 10А", "Бульвар Рокоссовского", "89101470050","29-е февраля 2024 г.", "двое суток", "black", "Нижняя");
+        boolean actualResult = order.createOrderAfterClick("Никита", "Кардин", "Артельная 10А", "Бульвар Рокоссовского", "89101470050","29-е февраля 2024 г.", "сутки", "black", "Нижняя");
         assertEquals(true, actualResult);
         driver.quit();
     }
