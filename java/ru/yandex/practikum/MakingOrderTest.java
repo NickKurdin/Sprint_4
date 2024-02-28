@@ -37,6 +37,8 @@ public class MakingOrderTest {
     public void createOrderOneTestSet(){
         driver.get("https://qa-scooter.praktikum-services.ru/");
         MakingOrder order = new MakingOrder(driver);
+
+
         boolean actualResult = order.createOrderAfterClick("Никита", "Кордин", "Артельная 10А", "Бульвар Рокоссовского", "89101470050","1-е марта 2024 г.", "сутки", "black", "Нижняя");
         assertEquals(true, actualResult);
     }
